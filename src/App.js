@@ -228,6 +228,27 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
+              W3B Early Member Token 
+            </s.TextTitle>
+            <s.TextDescription
+              style={{
+                textAlign: "center",
+                color: "var(--accent-text)",
+              }}
+            >
+            Probably something. Probably pretzel. If you are reading this you are early on.   
+            If you are on the allow list you were even earlier on. PretzelDAO is launching its first membership token. 
+            The token will be your pass to the token-gated discord community of Munich web3 builders, investors and enthusiast.
+            </s.TextDescription>
+
+            <s.TextTitle
+              style={{
+                textAlign: "center",
+                fontSize: 40,
+                fontWeight: "bold",
+                color: "var(--accent-text)",
+              }}
+            >
               {data.totalSupply} / 🥨
             </s.TextTitle>
             <s.TextDescription
