@@ -204,9 +204,6 @@ function App() {
         <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"W3B OG Token"} src={"/config/images/w3b_token_preview.gif"} />
-          </s.Container>
           <s.SpacerLarge />
           <s.Container
             flex={2}
@@ -220,6 +217,9 @@ function App() {
               boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
+            <s.Container flex={1} jc={"center"} ai={"center"}>
+              <StyledImg alt={"W3B OG Token"} src={"/config/images/w3b_token_preview.gif"} />
+            </s.Container>
             <s.TextTitle
               style={{
                 textAlign: "center",
@@ -391,12 +391,6 @@ function App() {
             <s.SpacerMedium />
           </s.Container>
           <s.SpacerLarge />
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg
-              alt={"W3B OG Token"}
-              src={"/config/images/w3b_token_preview.gif"}
-            />
-          </s.Container>
         </ResponsiveWrapper>
         <s.SpacerMedium />
         <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
