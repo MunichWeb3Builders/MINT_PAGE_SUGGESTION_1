@@ -1,1 +1,1 @@
-# MINT_PAGE_SUGGESTION_1
+# W3B OG Token Mint Page Suggestion
