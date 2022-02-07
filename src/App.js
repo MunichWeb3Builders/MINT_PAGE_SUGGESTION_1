@@ -59,7 +59,7 @@ export const ResponsiveWrapper = styled.div`
   flex-direction: column;
   justify-content: stretched;
   align-items: stretched;
-  width: 100%;
+  width: 75%;
   @media (min-width: 767px) {
     flex-direction: row;
   }
@@ -75,16 +75,15 @@ export const StyledLogo = styled.img`
 `;
 
 export const StyledImg = styled.img`
-  box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
   border: 0px dashed var(--secondary);
   background-color: var(--accent);
   border-radius: 100%;
-  width: 200px;
-  @media (min-width: 900px) {
-    width: 250px;
+  width: 180px;
+  @media (min-width: 800px) {
+    width: 200px;
   }
   @media (min-width: 1000px) {
-    width: 300px;
+    width: 250px;
   }
   transition: width 0.5s;
 `;
@@ -211,13 +210,13 @@ function App() {
             ai={"center"}
             style={{
               backgroundColor: "var(--accent)",
-              padding: 24,
+              padding: "30px 60px 30px 60px",
               borderRadius: 24,
               border: "0px var(--secondary)",
               boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
-            <s.Container flex={1} jc={"center"} ai={"center"}>
+            <s.Container jc={"center"} ai={"center"}>
               <StyledImg alt={"W3B OG Token"} src={"/config/images/w3b_token_preview.gif"} />
             </s.Container>
             <s.TextTitle
