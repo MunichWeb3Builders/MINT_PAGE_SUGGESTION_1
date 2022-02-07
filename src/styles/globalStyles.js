@@ -52,20 +52,20 @@ export const Container = styled.div`
 
 export const TextTitle = styled.p`
   color: var(--primary-text);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 500;
   line-height: 1.6;
 `;
 
 export const TextSubTitle = styled.p`
   color: var(--primary-text);
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.6;
 `;
 
 export const TextDescription = styled.p`
   color: var(--primary-text);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
 `;
 
