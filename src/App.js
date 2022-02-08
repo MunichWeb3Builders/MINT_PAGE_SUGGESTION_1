@@ -9,14 +9,17 @@ const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
-  padding: 10px;
+  padding: 20px;
   border-radius: 50px;
   border: none;
-  background-color: var(--secondary);
+  font-size: 20px;
+  background: rgb(184,185,241);
+  background: linear-gradient(90deg, rgba(184,185,241,1) 0%, rgba(233,141,216,1) 100%);
+  //background-color: var(--secondary);
   padding: 20px;
-  font-weight: bold;
+  font-weight: 800;
   color: var(--secondary-text);
-  width: 200px;
+  width: 300px;
   cursor: pointer;
   box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
   -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -201,11 +204,14 @@ function App() {
       <s.Container
         flex={1}
         ai={"center"}
-        style={{ padding: 24, backgroundColor: "var(--primary)" }}
+        style={{ 
+          padding: 24, 
+          background: "linear-gradient(to bottom , rgba(184,185,241,1), rgba(233,141,216,1))"
+          // backgroundColor: "var(--primary)" 
+        }}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
         <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
-        <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.SpacerLarge />
           <s.Container
@@ -223,6 +229,7 @@ function App() {
             <s.Container jc={"center"} ai={"center"}>
               <StyledImg alt={"W3B OG Token"} src={"/config/images/w3b_token_preview.gif"} />
             </s.Container>
+            <s.SpacerMedium />
             <s.TextTitle
               style={{
                 textAlign: "center",
@@ -231,8 +238,9 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              W3B Early Member Token 
+              W3B EARLY MEMBER TOKEN 
             </s.TextTitle>
+            <s.SpacerMedium />
             <s.TextDescription
               style={{
                 textAlign: "center",
@@ -240,7 +248,7 @@ function App() {
               }}
             >
               Probably something. Probably pretzel. If you are reading this you are early on.   
-              If you are on the allow list you were even earlier on. PretzelDAO is launching its first membership token. 
+              If you are on the allowlist you were even earlier on. PretzelDAO is launching its first membership token. 
               The token will be your pass to the token-gated discord community of Munich web3 builders, investors and enthusiast.
             </s.TextDescription>
             <s.SpacerXSmall />
@@ -256,7 +264,7 @@ function App() {
             <s.TextSubTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Mint your W3B early member token on Polygon if you are on the allowlist.
+                  Mint your free W3B early member token on Polygon. 
                 </s.TextSubTitle>
             <s.SpacerXSmall />
             <s.TextTitle
@@ -289,18 +297,7 @@ function App() {
               </>
             ) : (
               <>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}.
-                </s.TextTitle>
                 <s.SpacerXSmall />
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  Excluding gas fees.
-                </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
@@ -314,6 +311,10 @@ function App() {
                         Please make sure you are connected to the right network (
             {CONFIG.NETWORK.NAME} Mainnet) and the correct address. 
                     </s.TextDescription>
+                    <s.SpacerSmall />
+                    <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
+                        {truncate(CONFIG.CONTRACT_ADDRESS, 64)}
+                      </StyledLink>
                     <s.SpacerSmall />
                     <StyledButton
                       onClick={(e) => {
@@ -331,9 +332,6 @@ function App() {
                         color: "var(--primary-text)",
                       }}
                     > 
-                      <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
-                        {truncate(CONFIG.CONTRACT_ADDRESS, 30)}
-                      </StyledLink>
                     </s.TextDescription>
                     {blockchain.errorMsg !== "" ? (
                       <>
