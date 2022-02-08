@@ -151,7 +151,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+          `🎉🎉🎉 Congratulation 🎉🎉🎉 Your ${CONFIG.NFT_NAME} has been minted!`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
@@ -168,8 +168,8 @@ function App() {
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 10) {
-      newMintAmount = 10;
+    if (newMintAmount > 1) {
+      newMintAmount = 1;
     }
     setMintAmount(newMintAmount);
   };
@@ -206,7 +206,7 @@ function App() {
         ai={"center"}
         style={{ 
           padding: 24, 
-          background: "linear-gradient(to bottom , rgba(184,185,241,1), rgba(233,141,216,1))"
+          //background: "linear-gradient(to bottom , rgba(184,185,241,1), rgba(233,141,216,1))"
           // backgroundColor: "var(--primary)" 
         }}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
@@ -223,7 +223,7 @@ function App() {
               padding: "30px 60px 30px 60px",
               borderRadius: 24,
               border: "0px var(--secondary)",
-              boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
+              boxShadow: "18px 25px 73px rgba(0,0,0,0.41)",
             }}
           >
             <s.Container jc={"center"} ai={"center"}>
@@ -278,22 +278,21 @@ function App() {
               {data.totalSupply} / 🥨  minted
             </s.TextTitle>
             <s.SpacerXSmall />
+            {/* Mint only via allow list, hence max supply set very high. Max supply can be 
+              decreased ad-hoc if mint should be closed */}
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
               <>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  The sale has ended.
+                  Unfortunately, the  claiming periode for the W3B Early Member Token has ended.
                 </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  You can still find {CONFIG.NFT_NAME} on
+                  Stay tuned for future token drops.
                 </s.TextDescription>
                 <s.SpacerSmall />
-                <StyledLink target={"_blank"} href={CONFIG.MARKETPLACE_LINK}>
-                  {CONFIG.MARKETPLACE}
-                </StyledLink>
               </>
             ) : (
               <>
@@ -309,7 +308,7 @@ function App() {
                       }}
                     >
                         Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. 
+                        {CONFIG.NETWORK.NAME} Mainnet) and the correct address. 
                     </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
@@ -399,7 +398,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "BUY"}
+                        {claimingNft ? "🛠 Minting in Progress 🛠" : "MINT YOUR NFT"}
                       </StyledButton>
                     </s.Container>
                   </>
