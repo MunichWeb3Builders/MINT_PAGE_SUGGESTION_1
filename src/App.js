@@ -70,9 +70,9 @@ export const ResponsiveWrapper = styled.div`
 `;
 
 export const StyledLogo = styled.img`
-  width: 200px;
+  height: 100px;
   @media (min-width: 767px) {
-    width: 300px;
+    height: 120px;
   }
   transition: width 0.5s;
   transition: height 0.5s;
@@ -239,32 +239,37 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-            Probably something. Probably pretzel. If you are reading this you are early on.   
-            If you are on the allow list you were even earlier on. PretzelDAO is launching its first membership token. 
-            The token will be your pass to the token-gated discord community of Munich web3 builders, investors and enthusiast.
+              Probably something. Probably pretzel. If you are reading this you are early on.   
+              If you are on the allow list you were even earlier on. PretzelDAO is launching its first membership token. 
+              The token will be your pass to the token-gated discord community of Munich web3 builders, investors and enthusiast.
             </s.TextDescription>
-
-            <s.TextTitle
-              style={{
-                textAlign: "center",
-                fontSize: 40,
-                fontWeight: "bold",
-                color: "var(--accent-text)",
-              }}
-            >
-              {data.totalSupply} / 🥨
-            </s.TextTitle>
+            <s.SpacerXSmall />
             <s.TextDescription
               style={{
                 textAlign: "center",
-                color: "var(--primary-text)",
+                color: "var(--accent-text)",
               }}
             >
-              <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
-                {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
-              </StyledLink>
+              WAGMUC!
             </s.TextDescription>
-            <s.SpacerSmall />
+            <s.SpacerLarge />
+            <s.TextSubTitle
+                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                >
+                  Mint your W3B early member token on Polygon if you are on the allowlist.
+                </s.TextSubTitle>
+            <s.SpacerXSmall />
+            <s.TextTitle
+              style={{
+                textAlign: "center",
+                fontSize: 30,
+
+                color: "var(--accent-text)",
+              }}
+            >
+              {data.totalSupply} / 🥨  minted
+            </s.TextTitle>
+            <s.SpacerXSmall />
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
               <>
                 <s.TextTitle
@@ -306,7 +311,8 @@ function App() {
                         color: "var(--accent-text)",
                       }}
                     >
-                      Connect to the {CONFIG.NETWORK.NAME} network
+                        Please make sure you are connected to the right network (
+            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. 
                     </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledButton
@@ -316,8 +322,19 @@ function App() {
                         getData();
                       }}
                     >
-                      CONNECT
+                      CONNECT WALLET
                     </StyledButton>
+                    <s.SpacerSmall />
+                    <s.TextDescription
+                      style={{
+                        textAlign: "center",
+                        color: "var(--primary-text)",
+                      }}
+                    > 
+                      <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
+                        {truncate(CONFIG.CONTRACT_ADDRESS, 30)}
+                      </StyledLink>
+                    </s.TextDescription>
                     {blockchain.errorMsg !== "" ? (
                       <>
                         <s.SpacerSmall />
@@ -403,21 +420,10 @@ function App() {
               color: "var(--primary-text)",
             }}
           >
-            Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-            Once you make the purchase, you cannot undo this action.
+            Imprint
           </s.TextDescription>
           <s.SpacerSmall />
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
-          </s.TextDescription>
+
         </s.Container>
       </s.Container>
     </s.Screen>
