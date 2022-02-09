@@ -46,24 +46,22 @@ Note: this dapp is designed to work with the intended NFT smart contract, that o
     "SYMBOL": "Matic",
     "ID": 137
   },
-  "NFT_NAME": "XXX",
-  "SYMBOL": "XXX",
+  "NFT_NAME": "",
+  "SYMBOL": "",
   "MAX_SUPPLY": 1000,
   "WEI_COST": 75000000000000000,
   "DISPLAY_COST": 0.075,
   "GAS_LIMIT": 285000,
-  "MARKETPLACE": "OpenSea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/",
+  "MARKETPLACE": "",
+  "MARKETPLACE_LINK": "",
   "SHOW_BACKGROUND": true
 }
 ```
 
-Make sure you copy the contract ABI from remix and paste it in the `public/config/abi.json` file.
-(follow the youtube video if you struggle with this part).
+Make sure you copy the contract ABI and paste it in the `public/config/abi.json` file.
 
-Now you will need to create and change 2 images and a gif in the `public/config/images` folder, `bg.png`, `example.gif` and `logo.png`.
 
-Next change the theme colors to your liking in the `public/config/theme.css` file.
+Colors themes can be adjusted in the `public/config/theme.css` file.
 
 ```css
 :root {
