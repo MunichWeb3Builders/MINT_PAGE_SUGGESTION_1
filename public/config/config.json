@@ -1,12 +1,12 @@
 {
-  "CONTRACT_ADDRESS": "0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
-  "SCAN_LINK": "https://polygonscan.com/token/0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
+  "CONTRACT_ADDRESS": "0x36d98bA25B387e9FD55C59849A2D8091F611DCD3",
+  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x36d98bA25B387e9FD55C59849A2D8091F611DCD3",
   "NETWORK": {
-    "NAME": "Polygon",
-    "SYMBOL": "Matic",
-    "ID": 137
+    "NAME": "Rinkeby",
+    "SYMBOL": "ETH",
+    "ID": 4
   },
-  "NFT_NAME": "W3B OG Token",
+  "NFT_NAME": "W3B Early Member Token",
   "SYMBOL": "W3B",
   "MAX_SUPPLY": 999999, 
   "WEI_COST": 0,
