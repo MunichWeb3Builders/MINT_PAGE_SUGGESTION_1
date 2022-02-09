@@ -151,7 +151,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `🎉🎉🎉 Congratulation 🎉🎉🎉 Your ${CONFIG.NFT_NAME} has been minted!`
+          `🎉 Congratulation 🎉 \n Your ${CONFIG.NFT_NAME} has been minted!`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
@@ -248,8 +248,8 @@ function App() {
               }}
             >
               Probably something. Probably pretzel. If you are reading this you are early on.   
-              If you are on the allowlist you were even earlier on. PretzelDAO is launching its first membership token. 
-              The token will be your pass to the token-gated discord community of Munich web3 builders, investors and enthusiast.
+              PretzelDAO is launching its first membership token. A Web 3 community of builders, learners and investors seeded in munich. 
+              The early member token represents proof of early member status and will be the pass to the token-gated discord community.
             </s.TextDescription>
             <s.SpacerXSmall />
             <s.TextDescription
@@ -264,7 +264,7 @@ function App() {
             <s.TextSubTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Mint your free W3B early member token on Polygon. 
+                  Mint your free W3B early member token on {CONFIG.NETWORK.NAME}. 
                 </s.TextSubTitle>
             <s.SpacerXSmall />
             <s.TextTitle
@@ -308,7 +308,7 @@ function App() {
                       }}
                     >
                         Please make sure you are connected to the right network (
-                        {CONFIG.NETWORK.NAME} Mainnet) and the correct address. 
+                        {CONFIG.NETWORK.NAME}) and the correct address. 
                     </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
