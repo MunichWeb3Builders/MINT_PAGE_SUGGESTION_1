@@ -1,7 +1,7 @@
 {
-  "name": "hashlips_nft_minting_dapp",
+  "name": "w3b_early_member_token_minting_dapp",
   "version": "1.0.0",
-  "description": "HashLips minting dapp is a quick and easy way to connect your smart contract and start minting NFTs.",
+  "description": "Minting dapp to connect to smart contract and mint the early member token.",
   "private": true,
   "dependencies": {
     "react": "^17.0.2",
@@ -15,7 +15,7 @@
     "web3": "^1.5.1",
     "web3-eth-contract": "^1.5.2"
   },
-  "author": "Daniel Eugene Botha (HashLips)",
+  "author": "Patrick Tu",
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
