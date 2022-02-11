@@ -273,8 +273,9 @@ function App() {
               }}
             >
               Probably something. Probably pretzel. If you are reading this you are early on.   
-              PretzelDAO is launching its first membership token. A Web 3 community of builders, learners and investors seeded in munich. 
-              The early member token represents proof of early member status and will be the pass to the token-gated discord community.
+              PretzelDAO is launching its first membership token. A Web3 community of builders, learners and investors seeded in Munich. 
+              The early member token represents proof of early member status and will be the pass to the token-gated discord community. 
+              The token is limited to members that have registered for the allowlist until the snapshot in early February 2022.
             </s.TextDescription>
             <s.SpacerXSmall />
             <s.TextDescription
