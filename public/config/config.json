@@ -14,5 +14,9 @@
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/xxx",
-  "SHOW_BACKGROUND": true
+  "SHOW_BACKGROUND": true,
+  "ALLOW_LIST": [
+    "0x1594F8700CBa9D952C9339E0ca13D81743c90723", 
+    "0x2f807B6e4702aa8dBd034A27f2C9EC70E7d4658e" 
+  ]
 }
