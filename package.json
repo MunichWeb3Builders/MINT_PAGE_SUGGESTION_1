@@ -4,6 +4,8 @@
   "description": "Minting dapp to connect to smart contract and mint the early member token.",
   "private": true,
   "dependencies": {
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.27",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",

@@ -5,6 +5,10 @@ import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 
+const { MerkleTree } = require('merkletreejs')
+const keccak256 = require('keccak256')
+
+
 const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
@@ -124,19 +128,31 @@ function App() {
     MARKETPLACE: "",
     MARKETPLACE_LINK: "",
     SHOW_BACKGROUND: false,
+    ALLOW_LIST: []
   });
 
-  const claimNFTs = () => {
+  /** Mint function to claim NFT from Contract*/ 
+  const claimNFTs = async () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
+
+    // Construct merkle proof to validate allowlist eligibility
+    let accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    let address = accounts[0]
+    let merkleProof = merkleTree.getHexProof(keccak256(address));
+    
     console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
+    console.log("Minting address: ", address);
+    console.log("Merkle Proof:", merkleProof);
+
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
+
     blockchain.smartContract.methods
-      .mint(mintAmount)
+      .claim(merkleProof)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -158,7 +174,9 @@ function App() {
       });
   };
 
+
   const decrementMintAmount = () => {
+    // not used as we only allow minting 1
     let newMintAmount = mintAmount - 1;
     if (newMintAmount < 1) {
       newMintAmount = 1;
@@ -167,6 +185,7 @@ function App() {
   };
 
   const incrementMintAmount = () => {
+    // not used as we only allow minting 1
     let newMintAmount = mintAmount + 1;
     if (newMintAmount > 1) {
       newMintAmount = 1;
@@ -198,6 +217,12 @@ function App() {
   useEffect(() => {
     getData();
   }, [blockchain.account]);
+
+  // build merkle tree for whitelisting
+  const allowList = CONFIG.ALLOW_LIST
+  const leafNodes = allowList.map(addr => keccak256(addr))
+  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true })
+  const merkleRoot = merkleTree.getRoot()
 
   return (
     <s.Screen>
@@ -296,6 +321,7 @@ function App() {
               </>
             ) : (
               <>
+                {/* Case Metamask detected but not connected (yet)*/}
                 <s.SpacerXSmall />
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
