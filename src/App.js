@@ -151,7 +151,9 @@ function App() {
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
 
-    blockchain.smartContract.methods
+    // front-end check if on allowlist so that no (failed) txn will be send if not     
+    if(CONFIG.ALLOW_LIST.includes(address)) {
+      blockchain.smartContract.methods
       .claim(merkleProof)
       .send({
         gasLimit: String(totalGasLimit),
@@ -161,7 +163,7 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
+        setFeedback("❌ Sorry, something went wrong please try again later.");
         setClaimingNft(false);
       })
       .then((receipt) => {
@@ -172,6 +174,11 @@ function App() {
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
+    } else {
+      // setFeedback("Sorry, it seems like you are not on the allowlist.");
+      setFeedback(`⚠️ Sorry it seems like you are not on the allowlist.`);
+      setClaimingNft(false);
+    }
   };
 
   const getData = () => {
@@ -200,10 +207,10 @@ function App() {
   }, [blockchain.account]);
 
   // build merkle tree for whitelisting
-  const allowList = CONFIG.ALLOW_LIST
-  const leafNodes = allowList.map(addr => keccak256(addr))
-  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true })
-  const merkleRoot = merkleTree.getRoot()
+  const allowList = CONFIG.ALLOW_LIST;
+  const leafNodes = allowList.map(addr => keccak256(addr));
+  const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+  const merkleRoot = merkleTree.getRoot();
 
   return (
     <s.Screen>
@@ -253,7 +260,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              Probably something. Probably pretzel. If you are reading this you are early on.   
+              Probably something. Probably pretzel 🥨. If you are reading this you are early on.   
               PretzelDAO is launching its first membership token. A Web3 community of builders, learners and investors seeded in Munich. 
               The early member token represents proof of early member status and will be the pass to the token-gated discord community. 
               The token is limited to members that have registered for the allowlist until the snapshot in early February 2022.
@@ -282,30 +289,32 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.totalSupply} / 🥨  minted
+              {data.totalSupply} / {CONFIG.MAX_SUPPLY} minted
             </s.TextTitle>
             <s.SpacerXSmall />
-            {/* Mint only via allow list, hence max supply set very high. Max supply can be 
-              decreased ad-hoc if mint should be closed */}
+            {/* Case collection is sold-out */}
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
               <>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  Unfortunately, the  claiming periode for the W3B Early Member Token has ended.
-                </s.TextTitle>
                 <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                  style={{ 
+                    textAlign: "center", 
+                    color: "var(--accent-text)", 
+                    backgroundColor: "rgb(230, 247, 255)",
+                    padding: "15px 20px 15px 20px",
+                    borderRadius: 10}}
                 >
+                  ℹ️ Unfortunately, all W3B Early Member Tokens have been claimed. {"\n"}
                   Stay tuned for future token drops.
                 </s.TextDescription>
+                <s.SpacerXSmall />
+
                 <s.SpacerSmall />
               </>
             ) : (
-              <>
-                {/* Case Metamask detected but not connected (yet)*/}
+              <>                
                 <s.SpacerXSmall />
                 <s.SpacerSmall />
+                {/* Case User new on page and not connected via metamask yet*/}
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
