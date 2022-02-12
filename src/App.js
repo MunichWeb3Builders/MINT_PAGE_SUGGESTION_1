@@ -344,12 +344,15 @@ function App() {
                       <>
                         <s.SpacerSmall />
                         <s.TextDescription
-                          style={{
-                            textAlign: "center",
+                          style={{        
+                            backgroundColor: "rgb(255, 230, 230)",
+                            padding: "10px 20px 10px 20px",
+                            borderRadius: 10,
+                            textAlign: "center",              
                             color: "var(--accent-text)",
                           }}
                         >
-                          {blockchain.errorMsg}
+                          ⚠️ {blockchain.errorMsg}
                         </s.TextDescription>
                       </>
                     ) : null}
