@@ -150,7 +150,7 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     console.log("Minting address: ", address);
     
-    setFeedback(`Getting ready to mint your ${CONFIG.NFT_NAME}. Please confirmed your transaction in Metamask and wait - this might take a few seconds.`);
+    setFeedback(`Please confirm your transaction in Metamask 🦊 and wait for mint to process. This might take a few seconds ⏱.`);
     setClaimingNft(true);
 
     // front-end check if on allowlist so that no (failed) txn will be send if not
