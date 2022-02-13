@@ -150,7 +150,7 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     console.log("Minting address: ", address);
     
-    setFeedback(`Getting ready to mint your ${CONFIG.NFT_NAME}... please wait after you confirmed your transaction in Metamask.`);
+    setFeedback(`Getting ready to mint your ${CONFIG.NFT_NAME}. Please confirmed your transaction in Metamask and wait - this might take a few seconds.`);
     setClaimingNft(true);
 
     // front-end check if on allowlist so that no (failed) txn will be send if not
@@ -170,7 +170,7 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("❌ Sorry, something went wrong. Try again later.");
+        setFeedback("❌ Sorry, something went wrong.");
         setClaimingNft(false);
       })
       .then((receipt) => {
@@ -285,7 +285,7 @@ function App() {
             <s.TextSubTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Mint your free W3B early member token on {CONFIG.NETWORK.NAME}. 
+                  Mint your free W3B Early Member Token on {CONFIG.NETWORK.NAME}. 
                 </s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextTitle
@@ -420,7 +420,7 @@ function App() {
               color: "var(--primary-text)",
             }}
           >
-            Imprint
+            Made with ❤️ in Munich.
           </s.TextDescription>
           <s.SpacerSmall />
 
