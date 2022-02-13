@@ -149,13 +149,17 @@ function App() {
     console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
     console.log("Minting address: ", address);
-    console.log("Merkle Proof:", merkleProof);
-
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    
+    setFeedback(`Getting ready to mint your ${CONFIG.NFT_NAME}... please wait after you confirmed your transaction in Metamask.`);
     setClaimingNft(true);
 
-    // front-end check if on allowlist so that no (failed) txn will be send if not     
-    if(CONFIG.ALLOW_LIST.includes(address)) {
+    // front-end check if on allowlist so that no (failed) txn will be send if not
+    // address will be returned in lower case, hence, cast allowlist
+    let allowListlower = CONFIG.ALLOW_LIST.map(element => {
+      return element.toLowerCase();
+    });
+    
+    if(allowListlower.includes(address)) {
       blockchain.smartContract.methods
       .claim(merkleProof)
       .send({
@@ -166,7 +170,7 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("❌ Sorry, something went wrong please try again later.");
+        setFeedback("❌ Sorry, something went wrong. Try again later.");
         setClaimingNft(false);
       })
       .then((receipt) => {
@@ -283,17 +287,24 @@ function App() {
                 >
                   Mint your free W3B early member token on {CONFIG.NETWORK.NAME}. 
                 </s.TextSubTitle>
-            <s.SpacerXSmall />
+            <s.SpacerSmall />
             <s.TextTitle
               style={{
                 textAlign: "center",
                 fontSize: 30,
-
                 color: "var(--accent-text)",
               }}
             >
               {data.totalSupply} / {CONFIG.MAX_SUPPLY} minted
             </s.TextTitle>
+            <s.TextDescription
+              style={{
+                textAlign: "center",
+                color: "var(--accent-text)",
+              }}
+            >
+              (mint counter will refresh after connecting your wallet)
+            </s.TextDescription>
             <s.SpacerXSmall />
             {/* Case collection is sold-out */}
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
