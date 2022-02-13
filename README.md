@@ -1,5 +1,8 @@
-# W3B OG Token Mint Page Suggestion
+# W3B OG Token Mint Page
 
+This is a basic front-end implementation for the minting dapp of the Munich Web3 Builder Early Member Token based on react.js and web3.js.
+
+![Screenshot Mint Dapp](Screenshot.png)
 
 ## Installation 🛠️
 
