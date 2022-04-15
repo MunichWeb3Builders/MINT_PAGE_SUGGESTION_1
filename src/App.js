@@ -80,9 +80,9 @@ export const ResponsiveWrapper = styled.div`
 `;
 
 export const StyledLogo = styled.img`
-  height: 100px;
+  height: 50px;
   @media (min-width: 767px) {
-    height: 120px;
+    height: 50px;
   }
   transition: width 0.5s;
   transition: height 0.5s;
@@ -247,7 +247,7 @@ function App() {
             }}
           >
             <s.Container jc={"center"} ai={"center"}>
-              <StyledImg alt={"W3B OG Token"} src={"/config/images/w3b_token_preview.gif"} />
+              <StyledImg alt={"W3B OG Token"} src={"/config/images/pretzel_token_preview.gif"} />
             </s.Container>
             <s.SpacerMedium />
             <s.TextTitle
@@ -258,7 +258,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              W3B EARLY MEMBER TOKEN 
+              Active Member Badge 
             </s.TextTitle>
             <s.SpacerMedium />
             <s.TextDescription
@@ -267,10 +267,9 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              Probably something. Probably pretzel 🥨. If you are reading this you are early on.   
-              PretzelDAO is launching its first membership token. A Web3 community of builders, learners and investors seeded in Munich. 
-              The early member token represents proof of early member status and will be the pass to the token-gated discord community. 
-              The token is limited to members that have registered for the allowlist until the snapshot in early February 2022.
+              Probakely nothing. We are PretzelDAO – a community of builders baked in Munich at home in Web3. 
+              As an active member of our DAO you can claim your active member badge which acts as a governance token for our community.
+              Please make sure that you have submitted your wallet address in our Discord. Be there or be square. 
             </s.TextDescription>
             <s.SpacerXSmall />
             <s.TextDescription
@@ -279,13 +278,13 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              WAGMUC!
+              LFB!
             </s.TextDescription>
             <s.SpacerLarge />
             <s.TextSubTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Mint your free W3B Early Member Token on {CONFIG.NETWORK.NAME}. 
+                  Mint your Active Member Badge on {CONFIG.NETWORK.NAME}. 
                 </s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextTitle
@@ -317,7 +316,7 @@ function App() {
                     padding: "15px 20px 15px 20px",
                     borderRadius: 10}}
                 >
-                  ℹ️ Unfortunately, all W3B Early Member Tokens have been claimed. {"\n"}
+                  ℹ️ Unfortunately, all Active Member Badges have been claimed. {"\n"}
                   Stay tuned for future token drops.
                 </s.TextDescription>
                 <s.SpacerXSmall />
