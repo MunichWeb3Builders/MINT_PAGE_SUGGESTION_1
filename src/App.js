@@ -18,7 +18,7 @@ export const StyledButton = styled.button`
   border: none;
   font-size: 20px;
   background: rgb(184,185,241);
-  background: linear-gradient(90deg, rgba(184,185,241,1) 0%, rgba(233,141,216,1) 100%);
+  background: linear-gradient(85deg, #00e0ac, #07f 50%, #ff1654);
   //background-color: var(--secondary);
   padding: 20px;
   font-weight: 800;
@@ -253,6 +253,16 @@ function App() {
             <s.TextTitle
               style={{
                 textAlign: "center",
+                fontSize: 25,
+                fontWeight: "bold",
+                color: "var(--accent-text)",
+              }}
+            >
+              PretzelDAO
+            </s.TextTitle>
+            <s.TextTitle
+              style={{
+                textAlign: "center",
                 fontSize: 50,
                 fontWeight: "bold",
                 color: "var(--accent-text)",
@@ -267,7 +277,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              Probakely nothing. We are PretzelDAO – a community of builders baked in Munich at home in Web3. 
+              We are PretzelDAO – a community of builders baked in Munich at home in Web3. 
               As an active member of our DAO you can claim your active member badge which acts as a governance token for our community.
               Please make sure that you have submitted your wallet address in our Discord. Be there or be square. 
             </s.TextDescription>
@@ -285,7 +295,7 @@ function App() {
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
                   Mint your Active Member Badge on {CONFIG.NETWORK.NAME}. 
-                </s.TextSubTitle>
+            </s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextTitle
               style={{
