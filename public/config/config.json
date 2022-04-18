@@ -11,7 +11,7 @@
   "MAX_SUPPLY": 100, 
   "WEI_COST": 0,
   "DISPLAY_COST": 0.0,
-  "GAS_LIMIT": 100000,
+  "GAS_LIMIT": 300000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/xxx",
   "SHOW_BACKGROUND": true,
