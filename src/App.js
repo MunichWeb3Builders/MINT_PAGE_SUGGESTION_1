@@ -304,7 +304,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.totalSupply} / {CONFIG.MAX_SUPPLY} minted
+              {data.totalSupply} / (🥨,🥨) minted
             </s.TextTitle>
             <s.TextDescription
               style={{
