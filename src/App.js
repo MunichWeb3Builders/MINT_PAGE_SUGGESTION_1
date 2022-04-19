@@ -167,7 +167,7 @@ function App() {
             .claim(merkleProof)
             .send({
               gasLimit: String(totalGasLimit),
-              gasPrice: gasPrice * 1.1, // set gas 10% higher just to be sure
+              gasPrice: Math.floor(gasPrice * 1.1), // set gas 10% higher just to be sure
               to: CONFIG.CONTRACT_ADDRESS,
               from: blockchain.account,
               value: totalCostWei,
