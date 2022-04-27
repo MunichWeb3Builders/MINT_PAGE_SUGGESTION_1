@@ -134,7 +134,7 @@ function App() {
     ALLOW_LIST: []
   });
 
-  /** Mint function to claim NFT from Contract*/ 
+  /** Mint function to claim NFT from Contract*/
   const claimNFTs = async () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -145,11 +145,11 @@ function App() {
     let accounts = await ethereum.request({ method: "eth_requestAccounts" });
     let address = accounts[0]
     let merkleProof = merkleTree.getHexProof(keccak256(address));
-    
+
     console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
     console.log("Minting address: ", address);
-    
+
     setFeedback(`Please confirm your transaction in Metamask 🦊 and wait for mint to process. This might take a few seconds ⏱.`);
     setClaimingNft(true);
 
@@ -158,29 +158,34 @@ function App() {
     let allowListlower = CONFIG.ALLOW_LIST.map(element => {
       return element.toLowerCase();
     });
-    
-    if(allowListlower.includes(address)) {
-      blockchain.smartContract.methods
-      .claim(merkleProof)
-      .send({
-        gasLimit: String(totalGasLimit),
-        to: CONFIG.CONTRACT_ADDRESS,
-        from: blockchain.account,
-        value: totalCostWei,
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("❌ Sorry, something went wrong.");
-        setClaimingNft(false);
-      })
-      .then((receipt) => {
-        console.log(receipt);
-        setFeedback(
-          `🎉 Congratulation 🎉 \n Your ${CONFIG.NFT_NAME} has been minted!`
-        );
-        setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
-      });
+
+    if (allowListlower.includes(address)) {
+
+      blockchain.web3.eth.getGasPrice()
+        .then(gasPrice => {
+          blockchain.smartContract.methods
+            .claim(merkleProof)
+            .send({
+              gasLimit: String(totalGasLimit),
+              gasPrice: Math.floor(gasPrice * 1.1), // set gas 10% higher just to be sure
+              to: CONFIG.CONTRACT_ADDRESS,
+              from: blockchain.account,
+              value: totalCostWei,
+            })
+            .once("error", (err) => {
+              console.log(err);
+              setFeedback("❌ Sorry, something went wrong.");
+              setClaimingNft(false);
+            })
+            .then((receipt) => {
+              console.log(receipt);
+              setFeedback(
+                `🎉 Congratulation 🎉 \n Your ${CONFIG.NFT_NAME} has been minted!`
+              );
+              setClaimingNft(false);
+              dispatch(fetchData(blockchain.account));
+            });
+        });
     } else {
       // setFeedback("Sorry, it seems like you are not on the allowlist.");
       setFeedback(`⚠️ Sorry it seems like you are not on the allowlist.`);
@@ -224,8 +229,8 @@ function App() {
       <s.Container
         flex={1}
         ai={"center"}
-        style={{ 
-          padding: 24, 
+        style={{
+          padding: 24,
           //background: "linear-gradient(to bottom , rgba(184,185,241,1), rgba(233,141,216,1))"
           // backgroundColor: "var(--primary)" 
         }}
@@ -268,7 +273,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              Active Member Badge 
+              Active Member Badge
             </s.TextTitle>
             <s.SpacerMedium />
             <s.TextDescription
@@ -277,9 +282,9 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              We are PretzelDAO – a community of builders baked in Munich at home in Web3. 
+              We are PretzelDAO – a community of builders baked in Munich at home in Web3.
               As an active member of our DAO you can claim your active member badge which acts as a governance token for our community.
-              Please make sure that you have submitted your wallet address in our Discord. Be there or be square. 
+              Please make sure that you have submitted your wallet address in our Discord. Be there or be square.
             </s.TextDescription>
             <s.SpacerXSmall />
             <s.TextDescription
@@ -292,9 +297,9 @@ function App() {
             </s.TextDescription>
             <s.SpacerLarge />
             <s.TextSubTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  Mint your Active Member Badge on {CONFIG.NETWORK.NAME}. 
+              style={{ textAlign: "center", color: "var(--accent-text)" }}
+            >
+              Mint your Active Member Badge on {CONFIG.NETWORK.NAME}.
             </s.TextSubTitle>
             <s.SpacerSmall />
             <s.TextTitle
@@ -319,12 +324,13 @@ function App() {
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
               <>
                 <s.TextDescription
-                  style={{ 
-                    textAlign: "center", 
-                    color: "var(--accent-text)", 
+                  style={{
+                    textAlign: "center",
+                    color: "var(--accent-text)",
                     backgroundColor: "rgb(230, 247, 255)",
                     padding: "15px 20px 15px 20px",
-                    borderRadius: 10}}
+                    borderRadius: 10
+                  }}
                 >
                   ℹ️ Unfortunately, all Active Member Badges have been claimed. {"\n"}
                   Stay tuned for future token drops.
@@ -334,12 +340,12 @@ function App() {
                 <s.SpacerSmall />
               </>
             ) : (
-              <>                
+              <>
                 <s.SpacerXSmall />
                 <s.SpacerSmall />
                 {/* Case User new on page and not connected via metamask yet*/}
                 {blockchain.account === "" ||
-                blockchain.smartContract === null ? (
+                  blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
                     <s.TextDescription
                       style={{
@@ -347,13 +353,13 @@ function App() {
                         color: "var(--accent-text)",
                       }}
                     >
-                        Please make sure you are connected to the right network (
-                        {CONFIG.NETWORK.NAME}) and the correct address. 
+                      Please make sure you are connected to the right network (
+                      {CONFIG.NETWORK.NAME}) and the correct address.
                     </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
-                        {truncate(CONFIG.CONTRACT_ADDRESS, 64)}
-                      </StyledLink>
+                      {truncate(CONFIG.CONTRACT_ADDRESS, 64)}
+                    </StyledLink>
                     <s.SpacerSmall />
                     <StyledButton
                       onClick={(e) => {
@@ -370,17 +376,17 @@ function App() {
                         textAlign: "center",
                         color: "var(--primary-text)",
                       }}
-                    > 
+                    >
                     </s.TextDescription>
                     {blockchain.errorMsg !== "" ? (
                       <>
                         <s.SpacerSmall />
                         <s.TextDescription
-                          style={{        
+                          style={{
                             backgroundColor: "rgb(255, 230, 230)",
                             padding: "10px 20px 10px 20px",
                             borderRadius: 10,
-                            textAlign: "center",              
+                            textAlign: "center",
                             color: "var(--accent-text)",
                           }}
                         >
